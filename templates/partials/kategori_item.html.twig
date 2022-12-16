@@ -1,0 +1,54 @@
+<!-- Blog Post -->
+<div class="blog-post style2 animate-onscroll">
+    
+    <div class="post-image">
+            {% if page.media.images|first %}
+                <img {{ page.media.images|first.cropZoom(750,422).html('','', 'thumb')|raw }}
+            {% endif %}
+            <div class="media-hover">
+            <div class="media-icons">
+                {% if page.media.images|first %}
+                    {% set img=page.media.images|first %}
+                    <a href="{{img.url}}" data-group="media-jackbox" class="jackbox media-icon"><i class="icons icon-zoom-in"></i></a>
+                {% else %}
+                    {% include 'partials/youtube_frame.html.twig' with {'page':page} %}
+                {% endif %}
+                
+             </div>
+        </div>
+                                                
+                                                
+                                                
+        
+                                                
+        
+                                                
+                                            
+    </div>
+    
+    <div class="post-content">
+        
+        <div class="post-header">
+            <h2><a href="{{page.url}}">{{page.title}}</a></h2>
+        </div>
+        
+        <div class="post-exceprt">
+            {% if page.header.email!=null %}
+                <ul class="event-meta">
+                        <li><i class="icons icon-clock"></i>{{page.header.date|date("j F Y g:i")}}</li>
+                        <li><i class="icons icon-location"></i> {{page.header.tempat}}</li>
+                        <li>{{page.header.deskripsi|truncate(512)|raw}}</li>
+                </ul>
+               
+            {% else %}
+                {{page.content|truncate(512)|raw}}
+            {% endif %}
+            <a href="{{page.url}}" class="button read-more-button big button-arrow">Lebih lanjut</a>
+                                               
+        </div>
+        
+    </div>
+    
+                                                                            
+</div>
+<!-- /Blog Post -->	

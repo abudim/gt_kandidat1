@@ -1,0 +1,64 @@
+{% extends 'partials/base.html.twig' %}
+{% set blog_image = page.media.images[page.header.hero_image] ?: page.media.images|first %}
+{% set collection = page.collection() %}
+{% set blog = page.find(header_var('blog_url')|defined(theme_var('blog-page'))) %}
+{% set show_breadcrumbs = header_var('show_breadcrumbs', [page, blog])|defined(true) %}
+{% set show_sidebar = header_var('show_sidebar', [page, blog])|defined(true)  %}
+{% set show_pagination = header_var('show_pagination', [page, blog])|defined(true) %}
+
+
+
+{% block content %}
+
+
+			<!-- Page Heading -->
+			<section class="section page-heading animate-onscroll">
+				
+				<h1>{{page.content|raw}}</h1>
+				
+			</section>
+			<!-- Page Heading -->
+			
+
+			
+			<!-- Section -->
+			<section class="section full-width-bg gray-bg">
+				
+				<div class="row">
+				
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						
+						
+						<div class="media-items row">
+							{% set pagenum=uri.query('page')|default(1)  %}
+							{% set pagesize=9 %}
+							{% set startidx=pagesize*(pagenum-1)+1 %}
+							{% set i=1 %}
+                            {% for img in page.media.images %}
+								{% if i>=startidx and (i-startidx)<pagesize %}
+									{% include 'partials/gallery_item.html.twig' with {image: img} %}
+								{% endif %}
+
+								{% set i=i+1 %}
+                            {% endfor %}
+						</div>
+						
+						
+						<div class="animate-onscroll">
+						
+							<div class="divider"></div>
+							
+							{% include 'partials/gallery_pagination.html.twig' with {totalelements:page.media.images|length,pagesize:pagesize,pagenum:pagenum}  %}
+						
+						</div>
+						
+					</div>
+					
+					
+				
+				</div>
+				
+			</section>
+			<!-- /Section -->
+{% endblock %}
+

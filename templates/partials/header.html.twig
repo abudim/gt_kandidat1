@@ -1,0 +1,80 @@
+{% set logo = theme_var(mobile ? 'custom_logo_mobile' : 'custom_logo') %}
+{% set jargon = theme_var( 'jargon') %}
+<!-- Header -->
+			<header id="header" class="animate-onscroll">
+				
+				<!-- Main Header -->
+				<div id="main-header">
+					
+					<div class="container">
+					
+					<div class="row">
+						
+						
+						
+						<!-- Logo -->
+						<div id="logo" class="col-lg-3 col-md-3 col-sm-3">
+							
+							{% if logo %}
+								{% set logo_file = (logo|first).name %}
+								<img src="{{ url('theme://images/logo/' ~ logo_file)  }}" alt="{{ site.title }}" />
+							{% endif %}
+							
+							
+						</div>
+						<!-- /Logo -->
+						
+						
+						
+						<!-- Main Quote -->
+						<div class="col-lg-9 col-md-9 col-sm-9">
+							<h3>{{ config.site.title }}</h3>
+							<blockquote>{{jargon|raw}}</blockquote>
+						</div>
+						<!-- /Main Quote -->
+						
+						
+						
+						
+						
+					</div>
+					
+					</div>
+					
+				</div>
+				<!-- /Main Header -->
+				
+				
+				
+				
+				
+				<!-- Lower Header -->
+				<div id="lower-header">
+					
+					<div class="container">
+					
+					<div id="menu-button">
+						<div>
+						<span></span>
+						<span></span>
+						<span></span>
+						</div>
+						<span>Menu</span>
+					</div>
+					
+					<ul id="navigation">
+						{% for page in pages.children.visible %}
+							<li >
+								<a href="{{ page.url }}">{{ page.menu }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+					
+					</div>
+					
+				</div>
+				<!-- /Lower Header -->
+				
+				
+			</header>
+			<!-- /Header -->

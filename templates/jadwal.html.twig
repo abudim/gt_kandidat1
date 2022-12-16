@@ -1,0 +1,154 @@
+{% extends 'partials/base.html.twig' %}
+{% set blog_image = page.media.images[page.header.hero_image] ?: page.media.images|first %}
+{% set collection = page.collection() %}
+{% set blog = page.find(header_var('blog_url')|defined(theme_var('blog-page'))) %}
+{% set show_breadcrumbs = header_var('show_breadcrumbs', [page, blog])|defined(true) %}
+{% set show_sidebar = header_var('show_sidebar', [page, blog])|defined(true)  %}
+{% set show_pagination = header_var('show_pagination', [page, blog])|defined(true) %}
+
+
+
+{% block content %}
+
+
+			<!-- Page Heading -->
+			<section class="section page-heading animate-onscroll">
+				
+				<h1>{{page.title}}</h1>
+			</section>
+			<!-- Page Heading -->
+			
+			
+			
+			<!-- Section -->
+			<section class="section full-width-bg gray-bg">
+				
+				<div class="row">
+				
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						
+						<!-- Event Single -->
+						<div class="event-single">
+							
+							<div class="row">
+								
+								<div class="col-lg-9 col-md-9 col-sm-8 animate-onscroll">
+									
+									<div class="event-image">
+										 {% if page.media.images|first %}
+                                            <img alt=""  {{ page.media.images|first.cropZoom(750,422).html('','', 'thumb')|raw }}
+                                            {% endif %}
+									</div>
+									
+									<h6>Deskripsi Acara</h6>
+									{{page.header.deskripsi|raw}}
+								</div>
+								
+								<div class="col-lg-3 col-md-3 col-sm-4">
+									
+									<!-- Event Meta -->
+									<div class="event-meta">
+										
+										<div class="event-meta-block animate-onscroll">
+											
+											<i class="icons icon-calendar"></i>
+											<p class="title">Tanggal</p>
+											<p>{{page.header.date|date("F jS")}}</p>
+											
+										</div>
+										
+										<div class="event-meta-block animate-onscroll">
+											
+											<i class="icons icon-clock"></i>
+											<p class="title">Jam</p>
+											<p>{{page.header.date|date("g:i")}}</p>
+											
+										</div>
+										
+										<div class="event-meta-block animate-onscroll">
+											
+											<i class="icons icon-location"></i>
+											<p class="title">Tempat</p>
+											<p>{{page.header.tempat}}</p>
+											
+										</div>
+										
+										
+										<div class="event-meta-block animate-onscroll">
+											
+											<i class="icons icon-user"></i>
+											<p class="title">Organizer</p>
+											<p>{{page.header.organizer}}</p>
+											
+										</div>
+										
+										<div class="event-meta-block animate-onscroll">
+											
+											<i class="icons icon-phone"></i>
+											<p class="title">Telepon</p>
+											<p>{{page.header.phone}}</p>
+											
+										</div>
+										
+										<div class="event-meta-block animate-onscroll">
+											
+											<i class="icons icon-mail-alt"></i>
+											<p class="title">Email</p>
+											<p><a href="mailto:mail@companyname.com">{{page.header.email}}</a></p>
+											
+										</div>
+										
+										<div class="event-meta-block animate-onscroll">
+											
+											<i class="icons icon-share"></i>
+											<p class="title">Share This</p>
+											<ul class="social-share">
+												<li class="facebook"><a href="#" class="tooltip-ontop" title="Facebook"><i class="icons icon-facebook"></i></a></li>
+												<li class="twitter"><a href="#" class="tooltip-ontop" title="Twitter"><i class="icons icon-twitter"></i></a></li>
+												<li class="google"><a href="#" class="tooltip-ontop" title="Google Plus"><i class="icons icon-gplus"></i></a></li>
+												<li class="pinterest"><a href="#" class="tooltip-ontop" title="Pinterest"><i class="icons icon-pinterest-3"></i></a></li>
+												<li class="email"><a href="#" class="tooltip-ontop" title="Email"><i class="icons icon-mail"></i></a></li>
+											</ul>
+											
+										</div>
+										
+										
+									</div>
+									<!-- /Event Meta -->
+									
+								</div>
+								
+							</div>
+						
+						</div>
+						<!-- /Event Single -->
+						
+						
+						<div class="row event-pagination">
+						
+							<div class="col-lg-4 col-md-4 col-sm-4 align-left animate-onscroll">
+								<a href="#" class="button big button-arrow-before">Prev event</a>
+							</div>
+							
+							<div class="col-lg-4 col-md-4 col-sm-4 align-center animate-onscroll">
+								<a href="#" class="button big">All events</a>
+							</div>
+							
+							<div class="col-lg-4 col-md-4 col-sm-4 align-right animate-onscroll">
+								<a href="#" class="button big button-arrow">Next event</a>
+							</div>
+						
+						</div>
+						
+					</div>
+					
+					
+					
+				
+				</div>
+				
+			</section>
+			<!-- /Section -->
+			
+			{% include 'partials/related_event.html.twig' with {page:page} %}
+{% endblock %}

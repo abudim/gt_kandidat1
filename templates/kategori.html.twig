@@ -1,0 +1,62 @@
+{% extends 'partials/base.html.twig' %}
+{% set blog_image = page.media.images[page.header.hero_image] ?: page.media.images|first %}
+{% set collection = page.collection() %}
+{% set blog = page.find(header_var('blog_url')|defined(theme_var('blog-page'))) %}
+{% set show_breadcrumbs = header_var('show_breadcrumbs', [page, blog])|defined(true) %}
+{% set show_sidebar = header_var('show_sidebar', [page, blog])|defined(true)  %}
+{% set show_pagination = header_var('show_pagination', [page, blog])|defined(true) %}
+
+{% set collection = page.collection({"items":["@self.descendants"],"limit":3,"order":{"by":"date","dir":"desc"},"pagination":true}) %}
+    
+
+{% block content %}
+
+<!-- Page Heading -->
+			<section class="section page-heading animate-onscroll">
+				
+				<h1>{{page.title}}</h1>
+			
+			</section>
+			<!-- Page Heading -->
+			
+
+			
+			<!-- Section -->
+			<section class="section full-width-bg gray-bg">
+				
+				<div class="row">
+				
+					<div class="col-lg-9 col-md-9 col-sm-8">
+						
+						<div class="row">
+							
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								
+								{% for child in collection %}
+                                {% include 'partials/kategori_item.html.twig' with {'page':child, 'truncate':true} %}
+                                {% endfor %}
+								
+							</div>
+							
+							
+						</div>
+						 {% include 'partials/mypagination.html.twig' with {'page':page} %}
+                       
+						
+					</div>
+					
+					
+					
+					<!-- Sidebar -->
+					{% include 'partials/mysidebar.html.twig' %}
+					<!-- /Sidebar -->
+					
+					
+					
+				
+				</div>
+				
+			</section>
+			<!-- /Section -->
+
+{% endblock %}

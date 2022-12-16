@@ -1,0 +1,35 @@
+{% set collection =page.find(category).children.order('date', 'desc').slice(0, 5)  %}
+{% set thepage =page.find(category) %}
+
+<h3 class="animate-onscroll">Jadwal Kegiatan</h3>
+<div class="row">
+	<div class="col-sm-12 animate-onscroll">
+		
+		<ul class="upcoming-events var2">
+			{% for col in collection %}
+			<!-- Event -->
+			<li>
+				<div class="date">
+					<span>
+						<span class="day">{{col.header.date|date("j")}}</span>
+						<span class="month">{{col.header.date|date("M")}}</span>
+					</span>
+				</div>
+				
+				<div class="event-content">
+					<h6><a href="{{col.url}}">{{col.title}}</a></h6>
+					<ul class="event-meta">
+						<li><i class="icons icon-clock"></i>{{col.header.date|date("g:i")}}</li>
+						<li><i class="icons icon-location"></i> {{col.header.tempat}}</li>
+					</ul>
+				</div>
+			</li>
+			<!-- /Event -->
+			{% endfor %}
+			
+		</ul>
+
+		<a href="{{thepage.url}}" class="button transparent button-arrow">Jadwal Lainnya</a>
+
+	</div>
+</div>

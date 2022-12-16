@@ -1,0 +1,34 @@
+{% set collection =page.find(category).children.order('date', 'desc').slice(0, 5)  %}
+
+
+<div class="owl-carousel" data-max-items="2">
+		<!-- Owl Item -->
+		{% for col in collection %}
+		<div>
+			
+			<!-- Blog Post -->
+			<div class="blog-post animate-onscroll">
+				
+				<div class="post-image">
+					{% if page.media.images|first %}
+					<img alt=""  {{ col.media.images|first.cropZoom(750,422).html('','', 'thumb')|raw }}
+					{% endif %}
+				</div>
+				
+				<h4 class="post-title"><a href="blog-single-sidebar.html">{{col.title}}</a></h4>
+				
+				<div class="post-meta">
+					<span>by <a href="#">admin</a></span>
+					<span>October 01, 2013 11:28AM</span>
+				</div>
+				
+				{{col.content|truncate(150)|raw}}
+				<a href="{{col.url}}" class="button read-more-button big button-arrow">Lebih lanjut</a>
+				
+			</div>
+			<!-- /Blog Post -->
+			
+		</div>
+		{% endfor %}
+		<!-- /Owl Item -->
+</div>

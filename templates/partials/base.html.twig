@@ -1,0 +1,140 @@
+{% set body_classes = body_class(['header-fixed', 'header-animated', 'header-dark', 'header-transparent', 'sticky-footer']) %}
+{% set grid_size = theme_var('grid-size') %}
+{% set compress = theme_var('production-mode') ? '.min.css' : '.css' %}
+{% use 'blocks/base.html.twig' %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: grav.config.site.default_lang }}">
+<head>
+{% block head deferred %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Title -->
+    <title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+    
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+	
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+{% endblock head %}
+
+{% block stylesheets %}
+    {% do assets.addCss('theme://kandidat/css/bootstrap.min.css') %}
+    {% do assets.addCss('theme://kandidat/css/fontello.css') %}
+    {% do assets.addCss('theme://kandidat/css/flexslider.css') %}
+    {% do assets.addCss('theme://kandidat/js/revolution-slider/css/settings.css') %}
+    {% do assets.addCss('theme://kandidat/css/owl.carousel.css') %}
+    {% do assets.addCss('theme://kandidat/css/responsive-calendar.css') %}
+    {% do assets.addCss('theme://kandidat/css/chosen.css') %}
+    {% do assets.addCss('theme://kandidat/jackbox/css/jackbox.min.css') %}
+    {% do assets.addCss('theme://kandidat/css/cloud-zoom.css') %}
+    {% do assets.addCss('theme://kandidat/css/style.css') %}
+{% endblock %}
+
+{% block javascripts %}
+    {% do assets.addJs('theme://kandidat/js/jquery-1.11.0.min.js') %}
+    {% do assets.addJs('theme://kandidat/js/jquery-ui-1.10.4.min.js') %}
+    {% do assets.addJs('theme://kandidat/js/jquery.queryloader2.min.js') %}
+{% endblock %}
+
+{% block assets deferred %}
+    {{ assets.css()|raw }}
+    {{ assets.js()|raw }}
+{% endblock %}
+
+
+		<script type="text/javascript">
+		$('html').addClass('no-fouc');
+		
+		$(document).ready(function(){
+			
+			$('html').show();
+			
+			var window_w = $(window).width();
+			var window_h = $(window).height();
+			var window_s = $(window).scrollTop();
+			
+			$("body").queryLoader2({
+				backgroundColor: '#f2f4f9',
+				barColor: '#63b2f5',
+				barHeight: 4,
+				percentage:false,
+				deepSearch:true,
+				minimumTime:1000,
+				onComplete: function(){
+					
+					$('.animate-onscroll').filter(function(index){
+					
+						return this.offsetTop < (window_s + window_h);
+						
+					}).each(function(index, value){
+						
+						var el = $(this);
+						var el_y = $(this).offset().top;
+						
+						if((window_s) > el_y){
+							$(el).addClass('animated fadeInDown').removeClass('animate-onscroll');
+							setTimeout(function(){
+								$(el).css('opacity','1').removeClass('animated fadeInDown');
+							},2000);
+						}
+						
+					});
+					
+				}
+			});
+			
+		});
+		</script>
+		
+</head>
+<body class="sticky-header-on tablet-sticky-header">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>	
+
+	<div class="container">
+		{% block header %}
+			{% include 'partials/header.html.twig' %}
+		{% endblock %}
+		<section id="content">
+		{% block content %}
+		{% endblock %}
+		</section>
+	</div>
+
+		{% block banner %}
+
+		
+
+		{% endblock %}
+		{% block footer %}
+			{% include 'partials/footer.html.twig' %}
+		{% endblock %}
+		
+		{% do assets.addJs('theme://kandidat/js/bootstrap.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/modernizr.js') %}
+        {% do assets.addJs('theme://kandidat/js/jquery.flexslider-min.js') %}
+        {% do assets.addJs('theme://kandidat/js/owl.carousel.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/revolution-slider/js/jquery.themepunch.plugins.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/revolution-slider/js/jquery.themepunch.revolution.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/responsive-calendar.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/chosen.jquery.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/jflickrfeed.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/instafeed.min.js') %}
+        {% do assets.addJs('theme://kandidat/php/twitter/jquery.tweet.js') %}
+        {% do assets.addJs('theme://kandidat/js/jquery.mixitup.js') %}
+        {% do assets.addJs('theme://kandidat/jackbox/js/jackbox-packed.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/zoomsl-3.0.min.js') %}
+        {% do assets.addJs('theme://kandidat/js/script.js') %}
+</body>
+</html>

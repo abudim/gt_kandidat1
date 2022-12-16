@@ -1,0 +1,10 @@
+<div class="tp-banner-container main-revolution">
+    <span class="Apple-tab-span"></span>
+        <div class="tp-banner full-width-revolution">							
+            <ul>
+                {% include 'partials/slide.html.twig' with { img_url: page.header.slide1_media, narasi: page.header.slide1_narasi,url:page.header.slide1_url} %}
+                {% include 'partials/slide.html.twig' with { img_url: page.header.slide2_media, narasi: page.header.slide2_narasi,url:page.header.slide2_url} %}
+                {% include 'partials/slide.html.twig' with { img_url: page.header.slide3_media, narasi: page.header.slide3_narasi,url:page.header.slide3_url} %}
+            </ul>
+        </div>
+</div>

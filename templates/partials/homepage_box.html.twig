@@ -1,0 +1,30 @@
+
+{% set thepage =page.find(category).children.order('date', 'desc')|first %}
+{% if thepage==null %}
+{% set thepage =page.find(category) %}
+{% endif %}
+
+
+   
+
+<div class="col-lg-3 col-md-3 col-sm-12 animate-onscroll">
+							
+    <div class="issue-block">
+        
+        <div class="issue-image">
+            {% if page.media.images|first %}
+                <img alt=""  {{ thepage.media.images|first.cropZoom(750,422).html('','', 'thumb')|raw }}
+            {% endif %}
+        </div>
+        
+        <div class="issue-content">
+        
+            <h2>{{thepage.title}}</h2>
+            {{thepage.content|truncate(50)|raw}}
+            <a class="button big button-arrow" href="{{thepage.url}}">Lebih lanjut</a>
+        
+        </div>
+        
+    </div>
+    
+</div>

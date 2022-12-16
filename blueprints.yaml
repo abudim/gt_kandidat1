@@ -1,0 +1,74 @@
+name: Kandidat1
+slug: kandidat1
+type: theme
+version: 2.0.4
+description: New Grav Default Theme
+icon: microchip
+author:
+  name: Team Grav
+  email: devs@getgrav.org
+  url: https://getgrav.org
+homepage: https://github.com/getgrav/grav-theme-kandidat1
+demo: https://demo.getgrav.org/onepage-skeleton
+keywords: kandidat1, spectre, theme, core, modern, fast, responsive, html5, css3
+bugs: https://github.com/getgrav/grav-theme-kandidat1/issues
+license: MIT
+
+dependencies:
+  - { name: grav, version: '>=1.6.0' }
+
+form:
+  validation: loose
+
+  fields:
+    production-mode:
+      type: toggle
+      label: Production mode
+      help: When enabled, Kandidat1 will render with minified CSS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+
+    grid-size:
+      type: select
+      label: THEME_QUARK.ADMIN.GRID_SIZE
+      help: The maximum width of the theme
+      size: small
+      options:
+        '': None (full width)
+        grid-xl: Extra Large
+        grid-lg: Large
+        grid-md: Medium
+
+    header_section:
+      type: section
+      title: Header Defaults
+      underline: true
+
+    custom_logo:
+      type: file
+      label: Custom Logo
+      size: large
+      destination: 'theme://images/logo'
+      multiple: false
+      markdown: true
+      description: Will be used instead of default logo `theme://images/grav-logo.svg`
+      accept:
+        - image/*
+
+    custom_logo_mobile:
+      type: file
+      label: Mobile Custom Logo
+      size: large
+      destination: 'theme://images/logo'
+      multiple: false
+      accept:
+        - image/*
+
+    jargon:
+      type: text
+      label: Jargon

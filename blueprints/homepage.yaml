@@ -1,0 +1,249 @@
+title: PLUGIN_ADMIN.DEFAULT
+
+rules:
+  slug:
+    pattern: '[a-zA-Zа-яA-Я0-9_\-]+'
+    min: 1
+    max: 200
+
+form:
+  validation: loose
+
+  fields:
+
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        gambar:
+          type: tab
+          title: Gambar website
+          fields:
+            header.media_order:
+              type: pagemedia
+              label: Gambar-gambar yang akan dipakai di Website
+              destination: 'image://'
+        website:
+          type: tab
+          title: Setting website
+          fields:
+            media: 
+              type: section
+              title: Upload gambar terlebih dahulu di bagian gambar website
+              underline: true
+            header.site_logo:
+              label: Logo Website
+              type: filepicker
+              folder: 'self@'
+              preview_images: true
+              style: vertical
+
+        slider:
+          type: tab
+          title: Slider
+          fields:
+            media: 
+             type: section
+             title: Upload gambar terlebih dahulu di bagian gambar website
+             underline: true
+            slide1:
+             type: section
+             title: Slide 1
+             underline: true
+             fields:
+               header.slide1_media:
+                label: Pilih Gambar
+                type: filepicker
+                folder: 'self@'
+                preview_images: true
+                style: vertical
+                accept:
+                  - .png
+                  - .jpg
+               header.slide1_narasi:
+                 label: Narasi
+                 type: markdown
+                 validate:
+                  type: textarea
+               header.slide1_url:
+                 label: URL Konten (jika ada)
+                 type: text
+                 style: vertical
+            slide2:
+             type: section
+             title: Slide 2
+             underline: true
+             fields:
+               header.slide2_media:
+                label: Pilih Gambar
+                type: filepicker
+                folder: 'self@'
+                preview_images: true
+                style: vertical
+                accept:
+                  - .png
+                  - .jpg
+               header.slide2_narasi:
+                 label: Narasi
+                 type: markdown
+                 validate:
+                  type: textarea
+               header.slide2_url:
+                 label: URL Konten (jika ada)
+                 type: text
+                 style: vertical
+            slide3:
+             type: section
+             title: Slide 3
+             underline: true
+             fields:
+               header.slide3_media:
+                label: Pilih Gambar
+                type: filepicker
+                folder: 'self@'
+                preview_images: true
+                style: vertical
+                accept:
+                  - .png
+                  - .jpg
+               header.slide3_narasi:
+                 label: Narasi
+                 type: markdown
+                 validate:
+                  type: textarea
+               header.slide3_url:
+                 label: URL Konten (jika ada)
+                 type: text
+                 style: vertical
+        panel1:
+          type: tab
+          title: Panel 1
+          fields:
+            box1: 
+             type: section
+             title: Box 1
+             underline: true
+             fields:
+               header.box1:
+                 type: pages
+                 size: medium
+                 classes: fancy
+                 label: Kategori
+                 start_route: ''
+                 show_all: false
+                 show_modular: true
+                 show_root: false
+                 style: vertical
+            box2: 
+             type: section
+             title: Box 2
+             underline: true
+             fields:
+               header.box2:
+                 type: pages
+                 size: medium
+                 classes: fancy
+                 label: Kategori
+                 start_route: ''
+                 show_all: false
+                 show_modular: true
+                 show_root: false
+                 style: vertical
+            box3: 
+             type: section
+             title: Box 3
+             underline: true
+             fields:
+               header.box3:
+                 type: pages
+                 size: medium
+                 classes: fancy
+                 label: Kategori
+                 start_route: ''
+                 show_all: false
+                 show_modular: true
+                 show_root: false
+                 style: vertical
+            box4: 
+             type: section
+             title: Box 4
+             underline: true
+             fields:
+               header.box4:
+                 type: pages
+                 size: medium
+                 classes: fancy
+                 label: Kategori
+                 start_route: ''
+                 show_all: false
+                 show_modular: true
+                 show_root: false
+                 style: vertical
+        panel2:
+          type: tab
+          title: Panel 2
+          fields:
+            box1: 
+             type: section
+             title: Box 1
+             underline: true
+             fields:
+               header.panel2_box1:
+                 type: pages
+                 size: medium
+                 classes: fancy
+                 label: Kategori
+                 start_route: ''
+                 show_all: false
+                 show_modular: true
+                 show_root: false
+                 style: vertical
+            box2: 
+             type: section
+             title: Box 2
+             underline: true
+             fields:
+               header.panel2_box2:
+                 type: pages
+                 size: medium
+                 classes: fancy
+                 label: Kategori
+                 start_route: ''
+                 show_all: false
+                 show_modular: true
+                 show_root: false
+                 style: vertical
+            
+        urutan:
+          type: tab
+          title: Posisi
+
+          fields:
+            columns:
+              type: columns
+              fields:
+                column2:
+                  type: column
+
+                  fields:
+                    order_title:
+                      type: section
+                      title: PLUGIN_ADMIN.ORDERING
+                      underline: true
+
+                    ordering:
+                      type: toggle
+                      label: PLUGIN_ADMIN.FOLDER_NUMERIC_PREFIX
+                      help: PLUGIN_ADMIN.FOLDER_NUMERIC_PREFIX_HELP
+                      highlight: 1
+                      options:
+                        1: PLUGIN_ADMIN.ENABLED
+                        0: PLUGIN_ADMIN.DISABLED
+                      validate:
+                        type: bool
+
+                    order:
+                      type: order
+                      label: PLUGIN_ADMIN.SORTABLE_PAGES
+                      sitemap:

@@ -1,0 +1,154 @@
+{% extends 'partials/base.html.twig' %}
+{% set blog_image = page.media.images[page.header.hero_image] ?: page.media.images|first %}
+{% set collection = page.collection() %}
+{% set blog = page.find(header_var('blog_url')|defined(theme_var('blog-page'))) %}
+{% set show_breadcrumbs = header_var('show_breadcrumbs', [page, blog])|defined(true) %}
+{% set show_sidebar = header_var('show_sidebar', [page, blog])|defined(true)  %}
+{% set show_pagination = header_var('show_pagination', [page, blog])|defined(true) %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block hero %}
+    {% include 'partials/hero.html.twig' with {id: 'blog-hero', content: page.content, hero_image: blog_image} %}
+{% endblock %}
+
+{% block content %}
+			
+				
+				<!-- Section -->
+				<section class="section full-width-bg full-width-slider-section">
+					
+					<div class="row">
+					
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							<!-- Revolution Slider -->
+							{% include 'partials/slides.html.twig' with { page: page} %}
+							<!-- /Revolution Slider -->
+							
+						</div>
+						
+						
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							<div class="banners-inline">
+							
+														<div class="banner-wrapper">
+								<a class="banner animate-onscroll" href="#">
+									<i class="icons icon-calendar"></i>
+									<h4>Find Events</h4>
+									<p>Lorem ipsum dolor sit amet</p>
+								</a>
+							</div>
+							
+							<div class="banner-wrapper">
+								<a class="banner animate-onscroll" href="#">
+									<i class="icons icon-check"></i>
+									<h4>Register to vote</h4>
+									<p>Nemo enim ipsam</p>
+								</a>
+							</div>
+							
+							<div class="banner-wrapper">
+								<a class="banner animate-onscroll" href="#">
+									<i class="icons icon-user"></i>
+									<h4>Volunteer</h4>
+									<p>Pellentesque sed dolor</p>
+								</a>
+							</div>
+							
+							<div class="banner-wrapper">
+								<div class="banner donate-banner animate-onscroll">
+								
+									<h5>Make a <strong>quick donation</strong> here</h5>
+									<form>
+									
+										<input id="donate-amount-1" type="radio" name="donate-amount">
+										<label for="donate-amount-1">$5</label>
+										
+										<input id="donate-amount-2" type="radio" name="donate-amount">
+										<label for="donate-amount-2">$25</label>
+										
+										<input id="donate-amount-3" type="radio" name="donate-amount">
+										<label for="donate-amount-3">$100</label>
+										
+										<input type="submit" value="Donate">
+										
+									</form>
+								</div>
+							</div>							
+							</div>
+							
+						</div>
+					
+					</div>
+					
+				</section>
+				<!-- /Section -->
+				
+				<!-- Section -->
+				<section class="section full-width-bg gray-bg var2">
+					
+					<div class="row">
+						{% include 'partials/homepage_box.html.twig' with {page:page, category:page.header.box1} %}
+						{% include 'partials/homepage_box.html.twig' with {page:page, category:page.header.box2} %}
+						{% include 'partials/homepage_box.html.twig' with {page:page, category:page.header.box3} %}
+						{% include 'partials/homepage_box.html.twig' with {page:page, category:page.header.box4}  %}
+						
+					</div>
+					
+				</section>
+				<!-- /Section -->
+
+			
+{% endblock %}
+
+{% block banner %}
+
+		<div class="container">
+			
+			<!-- Section -->
+			<section class="section full-width-bg gray-bg var2">
+				
+				<div class="row">
+					<div class="col-sm-8">
+						
+						<!-- Owl Carousel -->
+						<div class="owl-carousel-container">
+							
+							<div class="owl-header">
+								{% set thepage =page.find(page.header.panel2_box1) %}
+								<h3 class="animate-onscroll">{{thepage.title}}</h3>
+								
+								<div class="carousel-arrows animate-onscroll">
+									<span class="left-arrow"><i class="icons icon-left-dir"></i></span>
+									<span class="right-arrow"><i class="icons icon-right-dir"></i></span>
+								</div>
+								
+							</div>
+							{% include 'partials/homepage_panel2_box.html.twig' with {page:page, category:page.header.panel2_box1} %}
+							
+						</div>
+
+					</div>
+					<div class="col-sm-4">
+
+						{% include 'partials/homepage_events.html.twig' with {page:page, category:page.header.panel2_box2} %}
+							
+					</div>
+				</div>
+
+			</section>
+
+			
+		</div>
+			
+		
+{% endblock %}
